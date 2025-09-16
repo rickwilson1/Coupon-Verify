@@ -1,11 +1,12 @@
 {
   "CITY_ENDPOINTS": {
-    "San Diego": "https://services1.arcgis.com/ZIL9uO234SBPBGL7/ArcGIS/rest/services/San_Diego_Boundary/FeatureServer/0",
+    "San Diego": "https://services1.arcgis.com/ZIL9uO234SBPGL7/ArcGIS/rest/services/San%20Diego%20Boundary/FeatureServer/0",
     "Los Angeles": "https://services.arcgis.com/DO4gTjwJVIJ7O9Ca/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-    "San Jose": "https://services1.arcgis.com/o4rvpE5dmnLl3z3z7/ArcGIS/rest/services/City_Boundary/FeatureServer/0"
+    "San Jose": "https://services1.arcgis.com/o4rvpE5dmnLl3z3z7/ArcGIS/rest/services/City_Boundary/FeatureServer/0",
+    "Sacramento City": "https://services9.arcgis.com/KoVGwLnMUYTXcdYu/arcgis/rest/services/SacramentoCity_boundary/FeatureServer/0"
   },
   "COUNTY_ENDPOINTS": {
-    "San Diego County": "https://www.arcgis.com/sharing/rest/content/items/f815d1a3fc42495ea8853a63b8aa0e06/resources/County_Boundary/MapServer/0",
-    "Ventura County": "https://gis.ventura.org/arcgis/rest/services/OpenData/Boundaries/MapServer/0"
+    "Ventura County": "https://gis.ventura.org/arcgis/rest/services/OpenData/Boundaries/MapServer/0",
+    "Sacramento County": "https://mapservices.gis.saccounty.net/arcgis/rest/services/POLITICAL/MapServer/2"
   }
 }
