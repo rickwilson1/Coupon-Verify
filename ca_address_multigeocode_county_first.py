@@ -32,31 +32,35 @@ def geocode_address(address, api_key):
             return lat, lng, zip_code
     return None, None, None
 
-def query_arcgis(endpoint, lat, lon):
-    if not endpoint or not endpoint.startswith("http"):
-        return False  # Skip invalid or blank URLs
 
-    url = f"{endpoint}/query"
+def query_arcgis(url, lat, lon):
+    """Query an ArcGIS REST endpoint and return the boundary result, or None if unavailable."""
+    if not url or not url.startswith("http"):
+        # Invalid or missing URL
+        return None  
+
     params = {
         "geometry": f"{lon},{lat}",
         "geometryType": "esriGeometryPoint",
         "inSR": "4326",
         "spatialRel": "esriSpatialRelIntersects",
-        "returnCountOnly": "false",
-        "returnGeometry": "false",
         "outFields": "*",
+        "returnGeometry": "false",
         "f": "json"
     }
+
     try:
         response = requests.get(url, params=params, timeout=10)
-        if response.status_code == 200:
-            data = response.json()
-            if "features" in data and len(data["features"]) > 0:
-                return True
-    except Exception as e:
-        st.warning(f"ArcGIS query failed for {endpoint}: {e}")
-    return False
+        response.raise_for_status()
+        data = response.json()
 
+        # ArcGIS usually returns features[] when a match is found
+        if "features" in data and data["features"]:
+            return data["features"][0]["attributes"]
+    except Exception as e:
+        print(f"ArcGIS query failed for {url}: {e}")
+
+    return None
 # ---------------- STREAMLIT APP ----------------
 st.title("California Address Lookup")
 
