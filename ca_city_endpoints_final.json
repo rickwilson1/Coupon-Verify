@@ -1,0 +1,62 @@
+{
+  "CITY_ENDPOINTS": {
+    "San Diego": {
+      "url": "https://services1.arcgis.com/ZIL9uO234SBBPGL7/ArcGIS/rest/services/San%20Diego%20Boundary/FeatureServer/0",
+      "fallback_name": "San Diego"
+    },
+    "Fresno": {
+      "url": "https://www3.fresno.gov/procc/rest/services/ISD/CityLimits/FeatureServer/0",
+      "fallback_name": "Fresno"
+    },
+    "West Sacramento": {
+      "url": "https://gis.cityofwestsacramento.org/server/rest/services/city_limits/FeatureServer/0",
+      "fallback_name": "West Sacramento"
+    },
+    "Oakland": {
+      "url": "https://gismaps.oaklandca.gov/server/rest/services/Planning_and_Zoning_Controls/FeatureServer/55",
+      "fallback_name": "Oakland"
+    }
+  },
+  "COUNTY_ENDPOINTS": {
+    "Los Angeles County": {
+      "url": "https://gis-apps.wrd.org/arcgis/rest/services/Map_Viewers/Base_Map_AGOL/MapServer/6",
+      "fallback_name": "Los Angeles County"
+    },
+    "Orange County": {
+      "url": "https://data-ocpw.opendata.arcgis.com/datasets/OCPW::oc-city-and-unincorporated-areas-boundaries/about",
+      "fallback_name": "Orange County"
+    },
+    "Sacramento County": {
+      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+      "fallback_name": "Sacramento County"
+    },
+    "Santa Clara County": {
+      "url": "https://data-sccgov.opendata.arcgis.com/datasets/sccgov::city-boundaries/about",
+      "fallback_name": "Santa Clara County"
+    },
+    "Alameda County": {
+      "url": "https://data.acgov.org/datasets/city-boundaries/about",
+      "fallback_name": "Alameda County"
+    },
+    "San Bernardino County": {
+      "url": "https://sbcounty.maps.arcgis.com/home/item.html?id=08f1cf25c1e34b2a89e1d4961a2a2a9b",
+      "fallback_name": "San Bernardino County"
+    },
+    "Riverside County": {
+      "url": "https://data-rivco.opendata.arcgis.com/datasets/city-boundaries/about",
+      "fallback_name": "Riverside County"
+    },
+    "San Joaquin County": {
+      "url": "https://sjmap.org/arcgis/rest/services/Boundaries/CityLimits/FeatureServer/0",
+      "fallback_name": "San Joaquin County"
+    },
+    "Stanislaus County": {
+      "url": "https://gis.stancounty.com/arcgis/rest/services/Admin/City_Limits/FeatureServer/0",
+      "fallback_name": "Stanislaus County"
+    },
+    "Kern County": {
+      "url": "https://maps.kerncounty.com/arcgis/rest/services/Administrative/CityLimits/FeatureServer/0",
+      "fallback_name": "Kern County"
+    }
+  }
+}
