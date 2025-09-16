@@ -3,7 +3,7 @@ import requests
 import json
 
 # ---------------- GOOGLE API KEY ----------------
-GOOGLE_KEY = "AIzaSyBLbTDyCwHIbA9tr9hgxL2C5x8Nn0dt6_4"
+GOOGLE_KEY = st.secrets["GOOGLE_API_KEY"]
 
 # ---------------- LOAD CONFIG ----------------
 with open("ca_city_endpoints_final.json") as f:
