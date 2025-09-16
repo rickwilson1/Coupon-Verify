@@ -118,7 +118,7 @@ def query_arcgis(url, lat, lon):
     return False
 
 # ---------------- STREAMLIT APP ----------------
-st.title("Coupon Eligibility Address Validator (Beta)")
+st.title("Coupon Eligibility Address Validator (beta)")
 
 address = st.text_input("Enter a California address to confirm if it qualifies for coupon eligibility based on official city or county boundaries.")
 
