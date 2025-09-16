@@ -5,7 +5,6 @@
     "San Jose": "https://services1.arcgis.com/o4rvpE5dmnLlz3z7/ArcGIS/rest/services/City_Boundary/FeatureServer/0"
   },
   "COUNTY_ENDPOINTS": {
-    "Ventura County": "https://gis.ventura.org/arcgis/rest/services/OpenData/Boundaries/MapServer/0",
-    "Sacramento County": "https://maps.saccounty.net/arcgis/rest/services/Boundaries/CountyBoundary/FeatureServer/0"
+    "Ventura County": "https://gis.ventura.org/arcgis/rest/services/OpenData/Boundaries/MapServer/0"
   }
 }
