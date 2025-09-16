@@ -5,9 +5,6 @@
     "San Jose": "https://services1.arcgis.com/o4rvpE5dmnLlz3z7/ArcGIS/rest/services/City_Boundary/FeatureServer/0"
   },
   "COUNTY_ENDPOINTS": {
-    "San Diego County": "https://gisdata.sandiegocounty.gov/arcgis/rest/services/Hosted/County_Boundary/FeatureServer/0",
-    "Los Angeles County": "https://maps.lacounty.gov/arcgis/rest/services/Boundaries/CountyBoundary/MapServer/0",
-    "Orange County": "https://ocgis.ocgov.com/arcgis/rest/services/Boundaries/County_Boundary/FeatureServer/0",
     "Ventura County": "https://gis.ventura.org/arcgis/rest/services/OpenData/Boundaries/MapServer/0",
     "Sacramento County": "https://maps.saccounty.net/arcgis/rest/services/Boundaries/CountyBoundary/FeatureServer/0"
   }
