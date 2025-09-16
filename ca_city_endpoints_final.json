@@ -3,10 +3,11 @@
     "San Diego": "https://services1.arcgis.com/ZIL9uO234SBPGL7/ArcGIS/rest/services/San%20Diego%20Boundary/FeatureServer/0",
     "Los Angeles": "https://services.arcgis.com/DO4gTjwJVIJ7O9Ca/arcgis/rest/services/City_Boundaries/FeatureServer/0",
     "San Jose": "https://services1.arcgis.com/o4rvpE5dmnLl3z3z7/ArcGIS/rest/services/City_Boundary/FeatureServer/0",
-    "Sacramento City": "https://services9.arcgis.com/KoVGwLnMUYTXcdYu/arcgis/rest/services/SacramentoCity_boundary/FeatureServer/0"
+    "Sacramento City": "https://services2.arcgis.com/Fh2ePMaHVbA3k87X/arcgis/rest/services/California_City_Boundaries/FeatureServer/0"
   },
   "COUNTY_ENDPOINTS": {
     "Ventura County": "https://gis.ventura.org/arcgis/rest/services/OpenData/Boundaries/MapServer/0",
-    "Sacramento County": "https://mapservices.gis.saccounty.net/arcgis/rest/services/POLITICAL/MapServer/2"
+    "Sacramento County": "https://services2.arcgis.com/Fh2ePMaHVbA3k87X/arcgis/rest/services/California_County_Boundary_Public/FeatureServer/0",
+    "California Counties": "https://services2.arcgis.com/Fh2ePMaHVbA3k87X/ArcGIS/rest/services/California_County_Boundary_Public/FeatureServer/0"
   }
 }
