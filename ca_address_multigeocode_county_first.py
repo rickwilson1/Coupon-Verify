@@ -33,6 +33,9 @@ def geocode_address(address, api_key):
     return None, None, None
 
 def query_arcgis(endpoint, lat, lon):
+    if not endpoint or not endpoint.startswith("http"):
+        return False  # Skip invalid or blank URLs
+
     url = f"{endpoint}/query"
     params = {
         "geometry": f"{lon},{lat}",
@@ -44,15 +47,18 @@ def query_arcgis(endpoint, lat, lon):
         "outFields": "*",
         "f": "json"
     }
-    response = requests.get(url, params=params)
-    if response.status_code == 200:
-        data = response.json()
-        if "features" in data and len(data["features"]) > 0:
-            return True
+    try:
+        response = requests.get(url, params=params, timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            if "features" in data and len(data["features"]) > 0:
+                return True
+    except Exception as e:
+        st.warning(f"ArcGIS query failed for {endpoint}: {e}")
     return False
 
 # ---------------- STREAMLIT APP ----------------
-st.title("California Address Lookup (Beta)")
+st.title("California Address Lookup")
 
 address = st.text_input("Enter an address in California to get coordinates, ZIP, county, and official city boundary check.")
 
@@ -68,7 +74,8 @@ if st.button("Lookup"):
 
         # ---------------- COUNTY LOOKUP ----------------
         county_name = "Authoritative Boundary Not Available"
-        for county_key, county_url in COUNTY_ENDPOINTS.items():
+        for county_key, county_entry in COUNTY_ENDPOINTS.items():
+            county_url = county_entry.get("url", "")
             if query_arcgis(county_url, lat, lon):
                 county_name = county_key
                 break
@@ -76,9 +83,9 @@ if st.button("Lookup"):
 
         # ---------------- CITY LOOKUP ----------------
         city_name = "Authoritative Boundary Not Available"
-        for city_key, city_url in CITY_ENDPOINTS.items():
+        for city_key, city_entry in CITY_ENDPOINTS.items():
+            city_url = city_entry.get("url", "")
             if query_arcgis(city_url, lat, lon):
                 city_name = city_key
                 break
         st.write("**City:**", city_name)
-
