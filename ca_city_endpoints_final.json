@@ -1,32 +1,8 @@
 {
   "CITY_ENDPOINTS": {
     "San Diego": {
-      "url": "https://services1.arcgis.com/ZIL9uO234SBBPGL7/ArcGIS/rest/services/San_Diego_City_Boundary/FeatureServer/0",
-      "source": "San Diego County GIS"
-    },
-    "Fresno": {
-      "url": "https://www3.fresno.gov/procc/rest/services/ISD/CityLimits/FeatureServer/0",
-      "fallback_name": "Fresno"
-    },
-    "West Sacramento": {
-      "url": "https://gis.cityofwestsacramento.org/server/rest/services/city_limits/FeatureServer/0",
-      "fallback_name": "West Sacramento"
-    },
-    "Oakland": {
-      "url": "https://gismaps.oaklandca.gov/server/rest/services/Planning_and_Zoning_Controls/FeatureServer/55",
-      "fallback_name": "Oakland"
-    },
-    "Sacramento": {
-      "url": "https://services1.arcgis.com/0XNncf2iBZRTE3zj/ArcGIS/rest/services/City_Boundaries/FeatureServer/0",
-      "source": "Sacramento County GIS"
-    },
-    "California City Boundaries (Coastal Buffers)": {
-      "url": "https://services3.arcgis.com/uknczv4rpevve42E/ArcGIS/rest/services/California_City_Boundaries_and_Identifiers_with_Coastal_Buffers/FeatureServer/2",
-      "source": "ArcGIS Online Statewide Dataset"
-    },
-    "SCAG Region Cities": {
-      "url": "https://maps.scag.ca.gov/scaggis/rest/services/OpenData/City_Boundaries/MapServer/0",
-      "source": "Southern California Association of Governments (SCAG)"
+      "url": "https://services1.arcgis.com/ZIL9uO234SBBPGL7/ArcGIS/rest/services/San%20Diego%20Boundary/FeatureServer/0",
+      "fallback_name": "San Diego"
     }
   },
   "COUNTY_ENDPOINTS": {
@@ -34,29 +10,9 @@
       "url": "https://gis-apps.wrd.org/arcgis/rest/services/Map_Viewers/Base_Map_AGOL/MapServer/6",
       "fallback_name": "Los Angeles County"
     },
-    "Orange County": {
-      "url": "https://data-ocpw.opendata.arcgis.com/datasets/OCPW::oc-city-and-unincorporated-areas-boundaries/about",
-      "fallback_name": "Orange County"
-    },
     "Sacramento County": {
-      "url": "https://services1.arcgis.com/0XNncf2iBZRTE3zj/ArcGIS/rest/services/County_Boundaries/FeatureServer/0",
-      "source": "Sacramento County GIS"
-    },
-    "Santa Clara County": {
-      "url": "https://data-sccgov.opendata.arcgis.com/datasets/sccgov::city-boundaries/about",
-      "fallback_name": "Santa Clara County"
-    },
-    "Alameda County": {
-      "url": "https://data.acgov.org/datasets/city-boundaries/about",
-      "fallback_name": "Alameda County"
-    },
-    "San Bernardino County": {
-      "url": "https://sbcounty.maps.arcgis.com/home/item.html?id=08f1cf25c1e34b2a89e1d4961a2a2a9b",
-      "fallback_name": "San Bernardino County"
-    },
-    "Riverside County": {
-      "url": "https://data-rivco.opendata.arcgis.com/datasets/city-boundaries/about",
-      "fallback_name": "Riverside County"
+      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+      "fallback_name": "Sacramento County"
     },
     "San Joaquin County": {
       "url": "https://sjmap.org/arcgis/rest/services/Boundaries/CityLimits/FeatureServer/0",
@@ -69,18 +25,6 @@
     "Kern County": {
       "url": "https://maps.kerncounty.com/arcgis/rest/services/Administrative/CityLimits/FeatureServer/0",
       "fallback_name": "Kern County"
-    },
-    "San Diego County": {
-      "url": "https://services1.arcgis.com/ZIL9uO234SBBPGL7/ArcGIS/rest/services/San_Diego_Boundary/FeatureServer/0",
-      "source": "San Diego County GIS"
-    },
-    "California Counties": {
-      "url": "https://services.gis.ca.gov/arcgis/rest/services/Boundaries/CA_Counties/MapServer/0",
-      "source": "CA Dept of Finance / GIS Services"
-    },
-    "California Counties (Alt)": {
-      "url": "https://services3.arcgis.com/uknczv4rpevve42E/ArcGIS/rest/services/California_Counties_Boundaries/FeatureServer/1",
-      "source": "ArcGIS Online Statewide Dataset"
     }
   }
 }
