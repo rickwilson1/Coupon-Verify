@@ -23,7 +23,7 @@
       "fallback_name": "Los Angeles County"
     },
     "Orange County": {
-      "url": "https://data-ocpw.opendata.arcgis.com/datasets/OCPW::oc-city-and-unincorporated-areas-boundaries/about",
+      "url": "",
       "fallback_name": "Orange County"
     },
     "Sacramento County": {
@@ -31,19 +31,19 @@
       "fallback_name": "Sacramento County"
     },
     "Santa Clara County": {
-      "url": "https://data-sccgov.opendata.arcgis.com/datasets/sccgov::city-boundaries/about",
+      "url": "",
       "fallback_name": "Santa Clara County"
     },
     "Alameda County": {
-      "url": "https://data.acgov.org/datasets/city-boundaries/about",
+      "url": "",
       "fallback_name": "Alameda County"
     },
     "San Bernardino County": {
-      "url": "https://sbcounty.maps.arcgis.com/home/item.html?id=08f1cf25c1e34b2a89e1d4961a2a2a9b",
+      "url": "",
       "fallback_name": "San Bernardino County"
     },
     "Riverside County": {
-      "url": "https://data-rivco.opendata.arcgis.com/datasets/city-boundaries/about",
+      "url": "",
       "fallback_name": "Riverside County"
     },
     "San Joaquin County": {
