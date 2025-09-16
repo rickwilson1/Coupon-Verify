@@ -1,30 +1,14 @@
 {
   "CITY_ENDPOINTS": {
-    "San Diego": {
-      "url": "https://services1.arcgis.com/ZIL9uO234SBBPGL7/ArcGIS/rest/services/San%20Diego%20Boundary/FeatureServer/0",
-      "fallback_name": "San Diego"
-    }
+    "San Diego": "https://services1.arcgis.com/ZIL9uO234SBBPGL7/ArcGIS/rest/services/San%20Diego%20Boundary/FeatureServer/0",
+    "Los Angeles": "https://services.arcgis.com/DO4gTjwJVIJ7O9Ca/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+    "San Jose": "https://services1.arcgis.com/o4rvpE5dmnLlz3z7/ArcGIS/rest/services/City_Boundary/FeatureServer/0"
   },
   "COUNTY_ENDPOINTS": {
-    "Los Angeles County": {
-      "url": "https://gis-apps.wrd.org/arcgis/rest/services/Map_Viewers/Base_Map_AGOL/MapServer/6",
-      "fallback_name": "Los Angeles County"
-    },
-    "Sacramento County": {
-      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-      "fallback_name": "Sacramento County"
-    },
-    "San Joaquin County": {
-      "url": "https://sjmap.org/arcgis/rest/services/Boundaries/CityLimits/FeatureServer/0",
-      "fallback_name": "San Joaquin County"
-    },
-    "Stanislaus County": {
-      "url": "https://gis.stancounty.com/arcgis/rest/services/Admin/City_Limits/FeatureServer/0",
-      "fallback_name": "Stanislaus County"
-    },
-    "Kern County": {
-      "url": "https://maps.kerncounty.com/arcgis/rest/services/Administrative/CityLimits/FeatureServer/0",
-      "fallback_name": "Kern County"
-    }
+    "San Diego County": "https://gisdata.sandiegocounty.gov/arcgis/rest/services/Hosted/County_Boundary/FeatureServer/0",
+    "Los Angeles County": "https://maps.lacounty.gov/arcgis/rest/services/Boundaries/CountyBoundary/MapServer/0",
+    "Orange County": "https://ocgis.ocgov.com/arcgis/rest/services/Boundaries/County_Boundary/FeatureServer/0",
+    "Ventura County": "https://gis.ventura.org/arcgis/rest/services/OpenData/Boundaries/MapServer/0",
+    "Sacramento County": "https://maps.saccounty.net/arcgis/rest/services/Boundaries/CountyBoundary/FeatureServer/0"
   }
 }
