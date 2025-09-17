@@ -9,8 +9,8 @@ GOOGLE_KEY = st.secrets["GOOGLE_API_KEY"]
 with open("ca_city_endpoints_final.json") as f:
     config = json.load(f)
 
-CITY_ENDPOINTS = config.get("CITY_ENDPOINTS", {})
-COUNTY_ENDPOINTS = config.get("COUNTY_ENDPOINTS", {})
+CITY_ENDPOINTS = config["CITY_ENDPOINTS"]
+COUNTY_ENDPOINTS = config["COUNTY_ENDPOINTS"]
 
 # ---------------- UTILS ----------------
 def geocode_address(address, api_key):
@@ -35,14 +35,12 @@ def geocode_address(address, api_key):
 
 def query_arcgis(entry, lat, lon):
     """Query an ArcGIS REST endpoint and return True if a boundary match is found."""
-    if not entry or not isinstance(entry, dict):
+    if not entry:
         return False
 
-    url = entry.get("url", "")
-    where = entry.get("filter", None)
-
-    if not url or not url.startswith("http"):
-        return False
+    # Handle both string and dict entries
+    url = entry.get("url") if isinstance(entry, dict) else entry
+    where_clause = entry.get("filter", "1=1") if isinstance(entry, dict) else "1=1"
 
     params = {
         "geometry": f"{lon},{lat}",
@@ -50,12 +48,10 @@ def query_arcgis(entry, lat, lon):
         "inSR": "4326",
         "spatialRel": "esriSpatialRelIntersects",
         "outFields": "*",
+        "where": where_clause,
         "returnGeometry": "false",
         "f": "json"
     }
-
-    if where:  # 👈 add filter if present
-        params["where"] = where
 
     try:
         response = requests.get(url, params=params, timeout=10)
@@ -97,10 +93,10 @@ if st.button("Lookup"):
         # ---------------- COUNTY LOOKUP ----------------
         county_name = None
         for county_key, county_entry in COUNTY_ENDPOINTS.items():
+            county_url = county_entry if isinstance(county_entry, str) else county_entry.get("url", "")
             if query_arcgis(county_entry, lat, lon):
                 county_name = county_key
                 break
-
         if not county_name:
             county_name = "Authoritative Boundary Not Available"
         st.write("**County:**", county_name)
@@ -112,12 +108,9 @@ if st.button("Lookup"):
                 city_name = city_key
                 break
 
-        # Decide final city result
+        # Accept city result if in county OR city endpoint
         if county_name != "Authoritative Boundary Not Available":
-            if city_name:
-                city_result = city_name
-            else:
-                city_result = f"Unincorporated {county_name}"
+            city_result = f"Valid (within {county_name})"
         elif city_name:
             city_result = city_name
         else:
