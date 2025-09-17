@@ -14,8 +14,9 @@ def load_config(path):
         return json.load(f)
 
 def query_arcgis(entry, lat, lon):
-    """Query an ArcGIS endpoint and return True if inside boundary."""
-    url = entry["url"]
+    """Query ArcGIS endpoint and return True if inside boundary."""
+    # Always hit the query endpoint
+    url = entry["url"].rstrip("/") + "/query"
     where_clause = entry.get("filter", "1=1")
 
     params = {
@@ -31,16 +32,14 @@ def query_arcgis(entry, lat, lon):
 
     r = requests.get(url, params=params, timeout=10)
 
-    # --- DEBUG OUTPUT ---
+    # Debug info in Streamlit
     st.write("DEBUG URL:", r.url)
-    try:
-        st.write("DEBUG Response:", r.json())
-    except Exception:
-        st.write("DEBUG Response: could not parse JSON")
-
     if r.status_code == 200:
         data = r.json()
+        st.write("DEBUG Response:", data)
         return "features" in data and len(data["features"]) > 0
+    else:
+        st.write("DEBUG Error:", r.status_code, r.text)
     return False
 
 # ---------------- STREAMLIT APP ----------------
