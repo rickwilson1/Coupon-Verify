@@ -32,15 +32,9 @@ def geocode_address(address, api_key):
             return lat, lng, zip_code
     return None, None, None
 
-def query_arcgis(entry, lat, lon):
-    """Query an ArcGIS REST endpoint (optionally with a filter) and return True if a boundary match is found."""
-    if isinstance(entry, str):
-        url = entry
-        where = None
-    else:
-        url = entry.get("url", "")
-        where = entry.get("filter")
 
+def query_arcgis(url, lat, lon, where=None):
+    """Query an ArcGIS REST endpoint and return True if a boundary match is found."""
     if not url or not url.startswith("http"):
         return False
 
@@ -53,8 +47,9 @@ def query_arcgis(entry, lat, lon):
         "returnGeometry": "false",
         "f": "json"
     }
-    if where:
-        params["where"] = where  # <-- only applied if filter is present
+
+    if where:  # 👈 add filter if present
+        params["where"] = where
 
     try:
         response = requests.get(url, params=params, timeout=10)
@@ -65,6 +60,7 @@ def query_arcgis(entry, lat, lon):
     except Exception as e:
         st.warning(f"ArcGIS query failed for {url}: {e}")
     return False
+
 
 # ---------------- STREAMLIT APP ----------------
 st.markdown(
@@ -95,10 +91,17 @@ if st.button("Lookup"):
         # ---------------- COUNTY LOOKUP ----------------
         county_name = None
         for county_key, county_entry in COUNTY_ENDPOINTS.items():
-            county_url = county_entry if isinstance(county_entry, str) else county_entry.get("url", "")
-            if query_arcgis(county_url, lat, lon):
+            if isinstance(county_entry, str):
+                county_url = county_entry
+                county_filter = None
+            else:
+                county_url = county_entry.get("url", "")
+                county_filter = county_entry.get("filter", None)
+
+            if query_arcgis(county_url, lat, lon, county_filter):
                 county_name = county_key
                 break
+
         if not county_name:
             county_name = "Authoritative Boundary Not Available"
         st.write("**County:**", county_name)
@@ -106,8 +109,10 @@ if st.button("Lookup"):
         # ---------------- CITY LOOKUP ----------------
         city_name = None
         for city_key, city_entry in CITY_ENDPOINTS.items():
-            city_url = city_entry if isinstance(city_entry, str) else city_entry.get("url", "")
-            if query_arcgis(city_url, lat, lon):
+            city_url = city_entry.get("url", "")
+            city_filter = city_entry.get("filter", None)
+
+            if query_arcgis(city_url, lat, lon, city_filter):
                 city_name = city_key
                 break
 
