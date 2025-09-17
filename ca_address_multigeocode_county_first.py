@@ -12,6 +12,9 @@ with open("ca_city_endpoints_final.json") as f:
 CITY_ENDPOINTS = config["CITY_ENDPOINTS"]
 COUNTY_ENDPOINTS = config["COUNTY_ENDPOINTS"]
 
+st.write("Loaded cities:", list(CITY_ENDPOINTS.keys()))
+st.write("Loaded counties:", list(COUNTY_ENDPOINTS.keys()))
+
 # ---------------- UTILS ----------------
 def geocode_address(address, api_key):
     url = f"https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={api_key}"
