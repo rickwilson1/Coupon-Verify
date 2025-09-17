@@ -9,8 +9,8 @@ GOOGLE_KEY = st.secrets["GOOGLE_API_KEY"]
 with open("ca_city_endpoints_final.json") as f:
     config = json.load(f)
 
-CITY_ENDPOINTS = config["CITY_ENDPOINTS"]
-COUNTY_ENDPOINTS = config["COUNTY_ENDPOINTS"]
+CITY_ENDPOINTS = config.get("CITY_ENDPOINTS", {})
+COUNTY_ENDPOINTS = config.get("COUNTY_ENDPOINTS", {})
 
 # ---------------- UTILS ----------------
 def geocode_address(address, api_key):
@@ -33,8 +33,14 @@ def geocode_address(address, api_key):
     return None, None, None
 
 
-def query_arcgis(url, lat, lon, where=None):
+def query_arcgis(entry, lat, lon):
     """Query an ArcGIS REST endpoint and return True if a boundary match is found."""
+    if not entry or not isinstance(entry, dict):
+        return False
+
+    url = entry.get("url", "")
+    where = entry.get("filter", None)
+
     if not url or not url.startswith("http"):
         return False
 
@@ -91,14 +97,7 @@ if st.button("Lookup"):
         # ---------------- COUNTY LOOKUP ----------------
         county_name = None
         for county_key, county_entry in COUNTY_ENDPOINTS.items():
-            if isinstance(county_entry, str):
-                county_url = county_entry
-                county_filter = None
-            else:
-                county_url = county_entry.get("url", "")
-                county_filter = county_entry.get("filter", None)
-
-            if query_arcgis(county_url, lat, lon, county_filter):
+            if query_arcgis(county_entry, lat, lon):
                 county_name = county_key
                 break
 
@@ -109,16 +108,16 @@ if st.button("Lookup"):
         # ---------------- CITY LOOKUP ----------------
         city_name = None
         for city_key, city_entry in CITY_ENDPOINTS.items():
-            city_url = city_entry.get("url", "")
-            city_filter = city_entry.get("filter", None)
-
-            if query_arcgis(city_url, lat, lon, city_filter):
+            if query_arcgis(city_entry, lat, lon):
                 city_name = city_key
                 break
 
-        # Accept city result if in county OR city endpoint
+        # Decide final city result
         if county_name != "Authoritative Boundary Not Available":
-            city_result = f"Valid (within {county_name})"
+            if city_name:
+                city_result = city_name
+            else:
+                city_result = f"Unincorporated {county_name}"
         elif city_name:
             city_result = city_name
         else:
