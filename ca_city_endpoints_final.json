@@ -1,38 +1,51 @@
 {
   "CITY_ENDPOINTS": {
     "Sacramento": {
-      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-      "filter": "CITY_NAME = 'SACRAMENTO'"
+      "city": {
+        "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+        "filter": "CITY_NAME = 'SACRAMENTO'"
+      }
     },
     "Elk Grove": {
-      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-      "filter": "CITY_NAME = 'ELK GROVE'"
+      "city": {
+        "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+        "filter": "CITY_NAME = 'ELK GROVE'"
+      }
     },
     "Folsom": {
-      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-      "filter": "CITY_NAME = 'FOLSOM'"
+      "city": {
+        "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+        "filter": "CITY_NAME = 'FOLSOM'"
+      }
     },
     "Citrus Heights": {
-      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-      "filter": "CITY_NAME = 'CITRUS HEIGHTS'"
+      "city": {
+        "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+        "filter": "CITY_NAME = 'CITRUS HEIGHTS'"
+      }
     },
     "Galt": {
-      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-      "filter": "CITY_NAME = 'GALT'"
+      "city": {
+        "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+        "filter": "CITY_NAME = 'GALT'"
+      }
     },
     "Rancho Cordova": {
-      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-      "filter": "CITY_NAME = 'RANCHO CORDOVA'"
+      "city": {
+        "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+        "filter": "CITY_NAME = 'RANCHO CORDOVA'"
+      }
     },
     "Isleton": {
-      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-      "filter": "CITY_NAME = 'ISLETON'"
+      "city": {
+        "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+        "filter": "CITY_NAME = 'ISLETON'"
+      }
     }
   },
   "COUNTY_ENDPOINTS": {
     "Sacramento County": {
-      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/CountyBoundary/FeatureServer/0",
-      "filter": "COUNTY_NAME = 'SACRAMENTO'"
+      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/CountyBoundary/FeatureServer/0"
     }
   }
 }
