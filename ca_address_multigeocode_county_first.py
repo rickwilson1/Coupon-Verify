@@ -32,8 +32,15 @@ def geocode_address(address, api_key):
             return lat, lng, zip_code
     return None, None, None
 
-def query_arcgis(url, lat, lon):
-    """Query an ArcGIS REST endpoint and return True if a boundary match is found."""
+def query_arcgis(entry, lat, lon):
+    """Query an ArcGIS REST endpoint (optionally with a filter) and return True if a boundary match is found."""
+    if isinstance(entry, str):
+        url = entry
+        where = None
+    else:
+        url = entry.get("url", "")
+        where = entry.get("filter")
+
     if not url or not url.startswith("http"):
         return False
 
@@ -46,6 +53,8 @@ def query_arcgis(url, lat, lon):
         "returnGeometry": "false",
         "f": "json"
     }
+    if where:
+        params["where"] = where  # <-- only applied if filter is present
 
     try:
         response = requests.get(url, params=params, timeout=10)
