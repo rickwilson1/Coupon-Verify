@@ -1,46 +1,32 @@
 {
   "CITY_ENDPOINTS": {
     "Sacramento": {
-      "city": {
-        "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-        "filter": "CITY_NAME = 'SACRAMENTO'"
-      }
+      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+      "filter": "CITY_NAME = 'SACRAMENTO'"
     },
     "Elk Grove": {
-      "city": {
-        "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-        "filter": "CITY_NAME = 'ELK GROVE'"
-      }
+      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+      "filter": "CITY_NAME = 'ELK GROVE'"
     },
     "Folsom": {
-      "city": {
-        "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-        "filter": "CITY_NAME = 'FOLSOM'"
-      }
+      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+      "filter": "CITY_NAME = 'FOLSOM'"
     },
     "Citrus Heights": {
-      "city": {
-        "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-        "filter": "CITY_NAME = 'CITRUS HEIGHTS'"
-      }
+      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+      "filter": "CITY_NAME = 'CITRUS HEIGHTS'"
     },
     "Galt": {
-      "city": {
-        "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-        "filter": "CITY_NAME = 'GALT'"
-      }
+      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+      "filter": "CITY_NAME = 'GALT'"
     },
     "Rancho Cordova": {
-      "city": {
-        "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-        "filter": "CITY_NAME = 'RANCHO CORDOVA'"
-      }
+      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+      "filter": "CITY_NAME = 'RANCHO CORDOVA'"
     },
     "Isleton": {
-      "city": {
-        "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-        "filter": "CITY_NAME = 'ISLETON'"
-      }
+      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+      "filter": "CITY_NAME = 'ISLETON'"
     }
   },
   "COUNTY_ENDPOINTS": {
