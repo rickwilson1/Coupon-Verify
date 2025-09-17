@@ -3,6 +3,10 @@
     "Sacramento": {
       "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
       "filter": "CITY_NAME = 'SACRAMENTO'"
+    },
+    "Elk Grove": {
+      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
+      "filter": "CITY_NAME = 'ELK GROVE'"
     }
   },
   "COUNTY_ENDPOINTS": {
