@@ -67,13 +67,32 @@ def query_arcgis(entry, lat, lon):
 # ---------------- STREAMLIT APP ----------------
 st.markdown(
     """
-    <div style="text-align: center; padding: 20px; background-color: #f0f2f6; border-radius: 10px;">
-        <h1 style="color:#2E86C1;">Coupon Eligibility Address Validator</h1>
-        <p style="font-size:18px;">
+    <div style="text-align: center; padding: 20px; background-color: var(--card-bg); border-radius: 10px;">
+        <h1 style="color: var(--title-color);">Coupon Eligibility Address Validator</h1>
+        <p style="font-size:18px; color: var(--text-color);">
             Enter a California address to check if it qualifies for coupon use 
             based on <b>official city and county boundaries</b>.
         </p>
     </div>
+
+    <style>
+        /* Light mode */
+        @media (prefers-color-scheme: light) {
+            :root {
+                --card-bg: #f0f2f6;       /* light gray background */
+                --title-color: #2E86C1;   /* blue */
+                --text-color: #000000;    /* black */
+            }
+        }
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --card-bg: #2b2b2b;       /* darker gray for card */
+                --title-color: #4DA3FF;   /* lighter blue for contrast */
+                --text-color: #FFFFFF;    /* white */
+            }
+        }
+    </style>
     """,
     unsafe_allow_html=True
 )
