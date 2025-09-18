@@ -22,7 +22,11 @@ address = st.text_input("Address:")
 if st.button("Lookup") and address:
     # Step 1: Geocode
     geo_params = {"SingleLine": address, "f": "json", "outFields": "*", "maxLocations": 1}
-    geo_resp = requests.get(GEOCODE_URL, params=geo_params).json()
+    try:
+        geo_resp = requests.get(GEOCODE_URL, params=geo_params, timeout=10).json()
+    except Exception as e:
+        st.error(f"Error contacting geocode service: {e}")
+        st.stop()
 
     if not geo_resp.get("candidates"):
         st.error("❌ Address not found.")
@@ -48,13 +52,22 @@ if st.button("Lookup") and address:
                 "returnGeometry": "false",
                 "f": "json"
             }
-            county_resp = requests.get(cfg["county_url"], params=county_params).json()
+            try:
+                county_resp = requests.get(cfg["county_url"], params=county_params, timeout=10).json()
+            except Exception as e:
+                st.error(f"Error contacting county service: {e}")
+                continue
 
             if county_resp.get("features"):
                 found_county = county_name
 
                 # Step 3: Check city layer
-                city_resp = requests.get(cfg["city_url"], params=county_params).json()
+                try:
+                    city_resp = requests.get(cfg["city_url"], params=county_params, timeout=10).json()
+                except Exception as e:
+                    st.error(f"Error contacting city service: {e}")
+                    continue
+
                 if city_resp.get("features"):
                     city_attr = city_resp["features"][0]["attributes"]
                     found_city = city_attr.get("CITY_NAME", "Unknown")
