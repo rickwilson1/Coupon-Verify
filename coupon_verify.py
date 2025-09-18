@@ -65,6 +65,3 @@ if st.button("Lookup") and address:
         # Step 4: Display
         st.write(f"**County:** {found_county or 'Not found'}")
         st.write(f"**City:** {found_city or 'Not found'}")
-
-        with st.expander("Debug Info"):
-            st.json({"Candidate": candidate, "Endpoints": endpoints})
