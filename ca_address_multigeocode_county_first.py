@@ -5,37 +5,40 @@ from pathlib import Path
 
 # --- Config ---
 GEOCODE_URL = "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates"
+ENDPOINTS_FILE = Path("endpoints.json")
 
-# Load endpoints from JSON
-with open(Path(__file__).parent / "endpoints.json") as f:
-    ENDPOINTS = json.load(f)
+# --- Load endpoints ---
+if ENDPOINTS_FILE.exists():
+    endpoints = json.loads(ENDPOINTS_FILE.read_text())
+else:
+    endpoints = {}
+    st.error("No endpoints.json found!")
 
-st.set_page_config(page_title="Coupon Eligibility Address Validator", layout="centered")
-st.title("🧾 Coupon Eligibility Address Validator")
-st.write("Enter a California address to check if it qualifies for coupon use "
-         "based on **official city and county boundaries.**")
+st.title("Coupon Eligibility Address Validator")
+st.caption("Enter a California address to check if it qualifies for coupon use based on official city and county boundaries.")
 
-address = st.text_input("Address:")
+address = st.text_input("Address:", "915 I St, Sacramento, CA 95814")
 
 if st.button("Lookup") and address:
     # Step 1: Geocode
-    params = {"SingleLine": address, "f": "json", "outFields": "*", "maxLocations": 1}
-    geo_resp = requests.get(GEOCODE_URL, params=params).json()
+    geo_params = {"SingleLine": address, "f": "json", "outFields": "*", "maxLocations": 1}
+    geo_resp = requests.get(GEOCODE_URL, params=geo_params).json()
 
     if not geo_resp.get("candidates"):
-        st.error("Address not found.")
+        st.error("❌ Address not found.")
     else:
         candidate = geo_resp["candidates"][0]
         x, y = candidate["location"]["x"], candidate["location"]["y"]
 
         st.success("✅ Address found!")
         st.write(f"**Matched Address:** {candidate['address']}")
+        st.write(f"**Coordinates:** {y}, {x}")
 
-        # Loop over counties in JSON
-        for county_name, urls in ENDPOINTS.items():
-            st.subheader(f"🔍 Checking {county_name}")
+        # Step 2: Loop through counties
+        found_county = None
+        found_city = None
 
-            # County check
+        for county_name, cfg in endpoints.items():
             county_params = {
                 "geometry": f"{x},{y}",
                 "geometryType": "esriGeometryPoint",
@@ -45,20 +48,23 @@ if st.button("Lookup") and address:
                 "returnGeometry": "false",
                 "f": "json"
             }
-            county_resp = requests.get(urls["county_url"], params=county_params).json()
-            county_result = None
+            county_resp = requests.get(cfg["county_url"], params=county_params).json()
+
             if county_resp.get("features"):
-                county_result = county_resp["features"][0]["attributes"]
+                found_county = county_name
 
-            # City check
-            city_resp = requests.get(urls["city_url"], params=county_params).json()
-            city_result = None
-            if city_resp.get("features"):
-                city_result = city_resp["features"][0]["attributes"]
+                # Step 3: Check city layer
+                city_resp = requests.get(cfg["city_url"], params=county_params).json()
+                if city_resp.get("features"):
+                    city_attr = city_resp["features"][0]["attributes"]
+                    found_city = city_attr.get("CITY_NAME", "Unknown")
+                else:
+                    found_city = f"Unincorporated {county_name}"
+                break
 
-            # Display
-            st.write(f"**County:** {county_result.get('BOUNDARY') if county_result else 'Not found'}")
-            st.write(f"**City:** {city_result.get('CITY_NAME') if city_result else 'Not found'}")
+        # Step 4: Display
+        st.write(f"**County:** {found_county or 'Not found'}")
+        st.write(f"**City:** {found_city or 'Not found'}")
 
         with st.expander("Debug Info"):
-            st.json({"GeocodeResponse": candidate})
+            st.json({"Candidate": candidate, "Endpoints": endpoints})
