@@ -1,10 +1,16 @@
 {
-  "Sacramento": {
+  "Sacramento County": {
     "county_url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/CountyBoundary/FeatureServer/0/query",
-    "city_url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0/query"
-  },
-  "San Diego": {
-    "county_url": "https://some.sandiego.endpoint/CountyBoundary/FeatureServer/0/query",
-    "city_url": "https://some.sandiego.endpoint/City_Boundaries/FeatureServer/0/query"
+    "city_url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0/query",
+    "cities": [
+      "Sacramento",
+      "Elk Grove",
+      "Citrus Heights",
+      "Folsom",
+      "Rancho Cordova",
+      "Galt",
+      "Isleton",
+      "Unincorporated Sacramento"
+    ]
   }
 }
