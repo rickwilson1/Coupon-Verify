@@ -1,3 +1,5 @@
+# Rick Wilson 9/18/25, development of ArcGIS URL call - development for Agromin Coupon Code Validation
+
 import streamlit as st
 import requests
 import json
