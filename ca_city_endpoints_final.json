@@ -1,17 +1,10 @@
 {
-  "CITY_ENDPOINTS": {
-    "Sacramento": {
-      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-      "filter": "CITY_NAME = 'SACRAMENTO'"
-    },
-    "Elk Grove": {
-      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0",
-      "filter": "CITY_NAME = 'ELK GROVE'"
-    }
+  "Sacramento": {
+    "county_url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/CountyBoundary/FeatureServer/0/query",
+    "city_url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/City_Boundaries/FeatureServer/0/query"
   },
-  "COUNTY_ENDPOINTS": {
-    "Sacramento County": {
-      "url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/CountyBoundary/FeatureServer/0"
-    }
+  "San Diego": {
+    "county_url": "https://some.sandiego.endpoint/CountyBoundary/FeatureServer/0/query",
+    "city_url": "https://some.sandiego.endpoint/City_Boundaries/FeatureServer/0/query"
   }
 }
