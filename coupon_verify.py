@@ -17,7 +17,7 @@ else:
 st.title("Coupon Eligibility Address Validator")
 st.caption("Enter a California address to check if it qualifies for coupon use based on official city and county boundaries.")
 
-address = st.text_input("Address:", "915 I St, Sacramento, CA 95814")
+address = st.text_input("Address:")
 
 if st.button("Lookup") and address:
     # Step 1: Geocode
