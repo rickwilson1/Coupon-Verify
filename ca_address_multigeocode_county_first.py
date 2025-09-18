@@ -1,75 +1,64 @@
 import streamlit as st
 import requests
 import json
-import os
-import pathlib
+from pathlib import Path
 
-# ---------------- CONFIG ----------------
-BASE_DIR = pathlib.Path(__file__).parent
-JSON_PATH = BASE_DIR / "ca_city_endpoints_final.json"
+# --- Config ---
+GEOCODE_URL = "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates"
 
-# ---------------- HELPERS ----------------
-def load_config(path):
-    with open(path) as f:
-        return json.load(f)
+# Load endpoints from JSON
+with open(Path(__file__).parent / "endpoints.json") as f:
+    ENDPOINTS = json.load(f)
 
-def query_arcgis(entry, lat, lon):
-    """Query ArcGIS endpoint and return True if inside boundary."""
-    # Always hit the query endpoint
-    url = entry["url"].rstrip("/") + "/query"
-    where_clause = entry.get("filter", "1=1")
+st.set_page_config(page_title="Coupon Eligibility Address Validator", layout="centered")
+st.title("🧾 Coupon Eligibility Address Validator")
+st.write("Enter a California address to check if it qualifies for coupon use "
+         "based on **official city and county boundaries.**")
 
-    params = {
-        "geometry": f"{lon},{lat}",
-        "geometryType": "esriGeometryPoint",
-        "inSR": "4326",
-        "spatialRel": "esriSpatialRelIntersects",
-        "outFields": "*",
-        "where": where_clause,
-        "returnGeometry": "false",
-        "f": "json"
-    }
+address = st.text_input("Address:")
 
-    r = requests.get(url, params=params, timeout=10)
+if st.button("Lookup") and address:
+    # Step 1: Geocode
+    params = {"SingleLine": address, "f": "json", "outFields": "*", "maxLocations": 1}
+    geo_resp = requests.get(GEOCODE_URL, params=params).json()
 
-    # Debug info in Streamlit
-    st.write("DEBUG URL:", r.url)
-    if r.status_code == 200:
-        data = r.json()
-        st.write("DEBUG Response:", data)
-        return "features" in data and len(data["features"]) > 0
+    if not geo_resp.get("candidates"):
+        st.error("Address not found.")
     else:
-        st.write("DEBUG Error:", r.status_code, r.text)
-    return False
+        candidate = geo_resp["candidates"][0]
+        x, y = candidate["location"]["x"], candidate["location"]["y"]
 
-# ---------------- STREAMLIT APP ----------------
-st.title("Coupon Eligibility Address Validator")
-st.write("Enter a California address to check if it qualifies for coupon use based on official city and county boundaries.")
+        st.success("✅ Address found!")
+        st.write(f"**Matched Address:** {candidate['address']}")
 
-address = st.text_input("Address:", "915 I St, Sacramento, CA 95814")
+        # Loop over counties in JSON
+        for county_name, urls in ENDPOINTS.items():
+            st.subheader(f"🔍 Checking {county_name}")
 
-if st.button("Lookup"):
-    st.success("Address found!")
+            # County check
+            county_params = {
+                "geometry": f"{x},{y}",
+                "geometryType": "esriGeometryPoint",
+                "inSR": 4326,
+                "spatialRel": "esriSpatialRelIntersects",
+                "outFields": "*",
+                "returnGeometry": "false",
+                "f": "json"
+            }
+            county_resp = requests.get(urls["county_url"], params=county_params).json()
+            county_result = None
+            if county_resp.get("features"):
+                county_result = county_resp["features"][0]["attributes"]
 
-    # Simulate geocode (replace with your real geocoder)
-    if "Sacramento" in address:
-        lat, lon = 38.5823873, -121.493432
-    elif "Elk Grove" in address:
-        lat, lon = 38.4231882, -121.3945566
-    else:
-        lat, lon = 38.566548, -121.2910851
+            # City check
+            city_resp = requests.get(urls["city_url"], params=county_params).json()
+            city_result = None
+            if city_resp.get("features"):
+                city_result = city_resp["features"][0]["attributes"]
 
-    st.write("**Coordinates:**", lat, ",", lon)
+            # Display
+            st.write(f"**County:** {county_result.get('BOUNDARY') if county_result else 'Not found'}")
+            st.write(f"**City:** {city_result.get('CITY_NAME') if city_result else 'Not found'}")
 
-    # Load JSON
-    config = load_config(JSON_PATH)
-    st.write("DEBUG: Loaded endpoints →", config)  # <--- show config
-
-    # Run ArcGIS queries
-    for city, entry in config.get("CITY_ENDPOINTS", {}).items():
-        inside = query_arcgis(entry, lat, lon)
-        st.write(f"City {city}: {'✅ Inside' if inside else '❌ Not inside'}")
-
-    for county, entry in config.get("COUNTY_ENDPOINTS", {}).items():
-        inside = query_arcgis(entry, lat, lon)
-        st.write(f"County {county}: {'✅ Inside' if inside else '❌ Not inside'}")
+        with st.expander("Debug Info"):
+            st.json({"GeocodeResponse": candidate})
