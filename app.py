@@ -1,4 +1,6 @@
-# Rick Wilson 9/18/25, development of ArcGIS URL call - development for Agromin Coupon Code Validation
+# Rick Wilson 9/18/25, Agromin Coupon Code Validation Streamlit web app 
+# Uses ArcGIS coding to convert address into latitude and longitude corrdinates.
+# Then uses ArcGIS REST URL call to see if the coordinates fall inside a valid ciry or jurisdiction region
 
 import streamlit as st
 import requests
