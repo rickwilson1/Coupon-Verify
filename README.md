@@ -1,6 +1,1 @@
-# Coupon-Verify
-Input address to see if it falls within city and/or just county jurisdiction
-First uses Google Geocordinates API (Rick Wilson's) to get geocordinates
-Then uses the Official GIS REST service URL for Each County or City to determine if coorindates fit within boundaries
-JSON file containes URL for Counties and Cities.  
-Coordinates from County GIS are prioritized in program.
+This Streamlit app written in Python lets users enter a California address and checks if it falls within eligible city or county boundaries for coupons. It uses ArcGIS to convert the address into coordinates, then queries official boundary services (from endpoints.json) to see if the location matches a city or county. The app displays the results in real time, showing the matched city and county or noting if none are found.
